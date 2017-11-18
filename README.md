@@ -1,4 +1,4 @@
-# Marvin
+# Elixir-Chatbot-Marvin
 
 Marvin responds to messages giving dictionary definitions, corrected spelling, and some translations.
 
