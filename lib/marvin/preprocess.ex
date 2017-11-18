@@ -1,0 +1,7 @@
+defmodule Preprocess do
+
+  def preprocess(message, slack, state) do
+    Regex.replace(~r/<@#{slack.me.id}>:\s/, message.text, "")
+  end
+
+end

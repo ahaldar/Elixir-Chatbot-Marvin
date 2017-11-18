@@ -1,0 +1,4 @@
+use Mix.Config
+
+config :winston, Winston.Slack,
+token: "xoxb-61802983318-OnC6ozdGMF3TLzCt6A78GUqw"

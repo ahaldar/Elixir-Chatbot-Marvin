@@ -1,0 +1,27 @@
+# (C) Aparajita Haldar 
+#
+# Elixir Client for the DICT protocol (RFC2229)
+# Modularised.
+
+defmodule Define do
+  import Socket
+  import DictClient
+  import Postprocess
+
+  def init(word) do
+    # open socket
+    socket = connect_socket()
+
+    message = "Showing results for: " <> word <> "\n_____________________\n"
+
+    # get definition and return it
+    definition = send_command(socket, word)
+    definition = message <> definition
+    s = postprocess(definition)
+   # s = Regex.replace(~r/{word}/, s, ~r/\*{word}\*/)
+   # s = Regex.replace(~r/\n_____________________\n.*?\n/, s, ~r/\n_____________________\n\*.*?\n\*/)
+   # s = Regex.replace(~r/^/, s, ~r/^\lt\lt\lt/)
+  end
+    
+end
+

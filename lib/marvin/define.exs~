@@ -1,0 +1,25 @@
+# (C) Aparajita Haldar 
+#
+# Elixir Client for the DICT protocol (RFC2229)
+# Modularised.
+
+defmodule Define do
+  import Socket
+  import DictClient
+  import Postprocess
+
+  def init(word) do
+    # open socket
+    socket = connect_socket()
+
+    message = "Showing results for: " <> word <> "\n"
+
+    # get definition and return it
+    definition = send_command(socket, word)
+    definition = message <> definition
+    s = postprocess(definition)
+    IO.puts s
+  end
+    
+end
+

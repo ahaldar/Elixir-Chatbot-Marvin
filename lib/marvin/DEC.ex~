@@ -1,0 +1,26 @@
+# (C) Aparajita Haldar 
+#
+# Elixir Client for the DICT protocol (RFC2229)
+# Also implements spellcheck.py functionality. 
+# Modularised.
+
+defmodule DEC do
+  import Socket
+  import Spellcheck
+  import DictClient
+
+  def init(word) do
+    # open socket
+    socket = connect_socket()
+    
+    # spellcheck
+    cword = correct_word(word)
+    message = "Showing results for \"" <> cword <> "\"\n"
+
+    # get definition and return it
+    definition = send_command(socket, cword)
+    definition = message <> definition
+  end
+    
+end
+
